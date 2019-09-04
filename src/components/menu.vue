@@ -1,0 +1,118 @@
+<template>
+  <div id="mymenu">
+    <div class="horizontalMenu">
+        <ul>
+            <li>Home</li>
+            <li class="dropdown">Language
+                <ul class="dropdown-content">
+                    <li>中文</li>
+                    <li>English</li>
+                </ul>
+            </li>
+        </ul>              
+    </div>
+    <div class="verticalMenu">
+        <ul>
+            <li>Home</li>
+            <li class="dropdown">Language
+                <ul class="dropdown-content">
+                    <li>中文</li>
+                    <li>English</li>
+                </ul>
+            </li>
+        </ul>              
+    </div>
+    <!-- <Header id="mainHeader" class="layout-header" :class="{'layout-header-scroll':isScroll}" v-show="isHorizontal">
+			<img class="layout-logo" src="../assets/img/logo-bhpay-01.png" v-if="isScroll" />
+			<img class="layout-logo" src="../assets/img/logo-bhpay-03.png" v-else />
+			<div>
+				<Menu mode="horizontal" theme="light" active-name="horizontalMenu" accordion @on-select="MenuSelect" class="layout-menu" :class="{'layout-menu-scroll':!isScroll}">
+					<MenuItem class="layout-nav-item" name="home">
+					{{$t('Home')}}
+					</MenuItem>
+					<Submenu class="layout-nav-item" name="language" :class="{'layout-nav-scroll':!isScroll}">
+						<template slot="title">{{$t('HomeMenuLanguage')}}</template>
+						<MenuItem class="layout-nav-item" name="zh-cn">
+						中文
+						</MenuItem>
+						<MenuItem class="layout-nav-item" name="en-us">
+						English
+						</MenuItem>
+					</Submenu>
+				</Menu>
+			</div>
+		</Header>
+		<Header id="mainHeader" v-show="!isHorizontal">
+			<div class="header-vertical">
+				<img class="layout-logo" src="../assets/img/logo-bhpay-01.png" />
+				<Button type="text" v-if="!isHorizontal" @click="ShowMenu">
+					<img src="../assets/img/menu32x32.png" />
+				</Button>
+			</div>
+			<div class="menu-container">
+				<Menu mode="vertical" theme="light" active-name="verticalMenu" accordion @on-select="MenuSelect" @on-open-change="SubmenuOpen" class="menu-control" :style="{height:menuHeight}">
+					<MenuItem class="layout-nav-item" name="home">
+					{{$t('Home')}}
+					</MenuItem>				
+					<Submenu class="layout-nav-item language" name="language">
+						<template slot="title">{{$t('HomeMenuLanguage')}}</template>
+						<MenuItem class="layout-nav-item" name="zh-cn">
+						中文
+						</MenuItem>
+						<MenuItem class="layout-nav-item" name="en-us">
+						English
+						</MenuItem>
+					</Submenu>
+				</Menu>
+			</div>
+    </Header>-->
+  </div>
+</template>
+<script>
+export default {
+  name: "mymenu"
+};
+</script>
+<style scoped>
+#mymenu{
+    color: #fff;
+}
+
+.horizontalMenu li{
+    display: inline;
+    padding: 10px;
+}
+
+.horizontalMenu .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.horizontalMenu .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.horizontalMenu .dropdown-content{
+    display: none;
+    position: absolute;
+}
+
+
+.verticalMenu li{
+    padding: 10px;
+}
+
+.verticalMenu .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.verticalMenu .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.verticalMenu .dropdown-content{
+    display: none;
+    position: absolute;
+}
+</style>

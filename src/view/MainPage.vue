@@ -1,0 +1,123 @@
+<template>
+  <div id="MainPage">
+    <div class="flex-container">
+      <header class="header">头部</header>
+      <aside class="aside aside-menu">
+        <dl>
+          <dt :class="{'aside-menu-item-active':menuItemActive == 'animation'}">
+            <a href="#" @click="menuChange('animation')">animation</a>
+          </dt>
+          <dt :class="{'aside-menu-item-active':menuItemActive == 'menu'}">
+            <a href="#" @click="menuChange('menu')">menu</a>
+          </dt>
+        </dl>
+      </aside>
+      <div class="content">
+        <router-view></router-view>
+      </div>
+      <footer class="footer">底部</footer>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "MainPage",
+  data(){
+return{
+    menuItemActive:''
+}
+  },
+  methods: {
+    menuChange: function(val) {
+      switch (val) {
+        case "animation":
+            this.menuItemActive =  "animation";
+          this.$router.push("/myAnimation");
+          break;
+        case "menu":
+            this.menuItemActive =  "menu";
+          this.$router.push("/myMenu");
+          break;
+        default:
+          break;
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.flex-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.flex-container > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+
+.header {
+  background-color: #3c3c3c;
+  color: #fff;
+}
+
+.aside-menu {
+    padding: 0;
+  background-color: #333333;
+  color: #fff;
+}
+
+.content {
+  text-align: left;
+  background: #252526;
+}
+
+.footer {
+  background-color: #3c3c3c;
+  color: #fff;  
+}
+
+@media all and (min-width: 600px) {
+  .aside {
+    flex: 1 auto;
+  }
+}
+
+@media all and (min-width: 800px) {
+  .content {
+    flex: 3 0px;
+  }
+  .aside-menu {
+    order: 1;
+  }
+  .content {
+    order: 2;
+  }
+  .footer {
+    order: 4;
+  }
+}
+
+.aside-menu dt:hover {
+  background-color: #2d2b2b;
+}
+
+.aside-menu-item-active {
+  background-color: #252526;
+}
+
+.aside-menu a {
+  display: block;
+  padding: 10px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  text-decoration-line: none;
+  -moz-text-decoration-line: none;
+  border-bottom: 1px solid #252526;
+}
+</style>
