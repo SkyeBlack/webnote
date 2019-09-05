@@ -13,6 +13,11 @@
       </ul>
     </div>
     <div class="verticalMenu" v-show="!isHorizontal">
+      <div class="vertical-header">
+        <button class="vertical-button">
+          <img src="../assets/img/menu32x32.png">
+        </button>
+      </div>      
       <ul>
         <li>Home</li>
         <li class="dropdown">
@@ -120,6 +125,20 @@ export default {
 .horizontalMenu .dropdown-content {
   display: none;
   position: absolute;
+}
+
+.vertical-header{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vertical-button{
+  background-color: transparent;
+  border: none;
+}
+
+.vertical-button {
+  outline: 0;
 }
 
 .verticalMenu li {
