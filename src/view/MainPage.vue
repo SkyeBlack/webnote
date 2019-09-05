@@ -56,29 +56,33 @@ return{
 }
 
 .flex-container > * {
-  padding: 10px;
   flex: 1 100%;
 }
 
 .header {
+  height: 60px;
+  line-height: 60px;
   background-color: #3c3c3c;
   color: #fff;
 }
 
 .aside-menu {
-    padding: 0;
+  min-height: calc(100vh - 120px);
   background-color: #333333;
   color: #fff;
 }
 
 .content {
+  padding: 10px;
   text-align: left;
   background: #252526;
 }
 
 .footer {
+  height: 60px;
+  line-height: 60px;
   background-color: #3c3c3c;
-  color: #fff;  
+  color: #fff;    
 }
 
 @media all and (min-width: 600px) {
@@ -102,6 +106,10 @@ return{
   }
 }
 
+dl{
+  margin: 0;
+}
+
 .aside-menu dt:hover {
   background-color: #2d2b2b;
 }
@@ -112,9 +120,8 @@ return{
 
 .aside-menu a {
   display: block;
-  padding: 10px;
-  height: 30px;
-  line-height: 30px;
+  height: 50px;
+  line-height: 50px;
   color: #fff;
   text-decoration-line: none;
   -moz-text-decoration-line: none;
