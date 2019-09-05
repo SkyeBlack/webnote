@@ -15,19 +15,21 @@
     <div class="verticalMenu" v-show="!isHorizontal">
       <div class="vertical-header">
         <button class="vertical-button">
-          <img src="../assets/img/menu32x32.png">
+          <img src="../assets/img/menu32x32.png" />
         </button>
-      </div>      
-      <ul>
-        <li>Home</li>
-        <li class="dropdown">
-          Language
-          <ul class="dropdown-content">
-            <li>中文</li>
-            <li>English</li>
-          </ul>
-        </li>
-      </ul>
+      </div>
+      <div>
+        <ul>
+          <li>Home</li>
+          <li class="dropdown">
+            Language
+            <ul class="dropdown-content">
+              <li>中文</li>
+              <li>English</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <!-- <Header id="mainHeader" class="layout-header" :class="{'layout-header-scroll':isScroll}">
 			<img class="layout-logo" src="../assets/img/logo-bhpay-01.png" v-if="isScroll" />
@@ -108,9 +110,22 @@ export default {
   color: #fff;
 }
 
+ul{
+  padding: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;  
+}
+
 .horizontalMenu li {
   display: inline;
   padding: 10px;
+}
+
+.horizontalMenu li:hover {
+  border-bottom: 2px solid #fff;
 }
 
 .horizontalMenu .dropdown {
@@ -118,31 +133,32 @@ export default {
   display: inline-block;
 }
 
+.horizontalMenu .dropdown-content {
+  padding-top: 20px;
+}
+
+.horizontalMenu .dropdown-content li {
+  line-height: 38px;
+}
+
 .horizontalMenu .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.horizontalMenu .dropdown-content {
-  display: none;
-  position: absolute;
-}
-
-.vertical-header{
+.vertical-header {
   display: flex;
   justify-content: flex-end;
 }
 
-.vertical-button{
+.vertical-button {
   background-color: transparent;
   border: none;
-}
-
-.vertical-button {
   outline: 0;
 }
 
 .verticalMenu li {
   padding: 10px;
+  list-style: none;
 }
 
 .verticalMenu .dropdown {
@@ -154,8 +170,4 @@ export default {
   display: block;
 }
 
-.verticalMenu .dropdown-content {
-  display: none;
-  position: absolute;
-}
 </style>
