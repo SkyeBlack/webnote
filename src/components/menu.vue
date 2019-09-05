@@ -1,28 +1,30 @@
 <template>
   <div id="mymenu">
-    <div class="horizontalMenu">
-        <ul>
-            <li>Home</li>
-            <li class="dropdown">Language
-                <ul class="dropdown-content">
-                    <li>中文</li>
-                    <li>English</li>
-                </ul>
-            </li>
-        </ul>              
+    <div class="horizontalMenu" v-show="isHorizontal">
+      <ul>
+        <li>Home</li>
+        <li class="dropdown">
+          Language
+          <ul class="dropdown-content">
+            <li>中文</li>
+            <li>English</li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <div class="verticalMenu">
-        <ul>
-            <li>Home</li>
-            <li class="dropdown">Language
-                <ul class="dropdown-content">
-                    <li>中文</li>
-                    <li>English</li>
-                </ul>
-            </li>
-        </ul>              
+    <div class="verticalMenu" v-show="!isHorizontal">
+      <ul>
+        <li>Home</li>
+        <li class="dropdown">
+          Language
+          <ul class="dropdown-content">
+            <li>中文</li>
+            <li>English</li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <!-- <Header id="mainHeader" class="layout-header" :class="{'layout-header-scroll':isScroll}" v-show="isHorizontal">
+    <!-- <Header id="mainHeader" class="layout-header" :class="{'layout-header-scroll':isScroll}">
 			<img class="layout-logo" src="../assets/img/logo-bhpay-01.png" v-if="isScroll" />
 			<img class="layout-logo" src="../assets/img/logo-bhpay-03.png" v-else />
 			<div>
@@ -42,7 +44,7 @@
 				</Menu>
 			</div>
 		</Header>
-		<Header id="mainHeader" v-show="!isHorizontal">
+		<Header id="mainHeader">
 			<div class="header-vertical">
 				<img class="layout-logo" src="../assets/img/logo-bhpay-01.png" />
 				<Button type="text" v-if="!isHorizontal" @click="ShowMenu">
@@ -70,17 +72,40 @@
 </template>
 <script>
 export default {
-  name: "mymenu"
+  name: "mymenu",
+  data() {
+    return {
+      isHorizontal: true
+    };
+  },
+  mounted() {
+    let _that = this;
+    window.onresize = () => {
+      return (() => {
+        _that.MenuChange();
+      })();
+    };
+    _that.MenuChange();
+  },
+  methods: {
+    MenuChange: function() {
+      if (document.documentElement.clientWidth > 992) {
+        this.isHorizontal = true;
+      } else {
+        this.isHorizontal = false;
+      }
+    }
+  }
 };
 </script>
 <style scoped>
-#mymenu{
-    color: #fff;
+#mymenu {
+  color: #fff;
 }
 
-.horizontalMenu li{
-    display: inline;
-    padding: 10px;
+.horizontalMenu li {
+  display: inline;
+  padding: 10px;
 }
 
 .horizontalMenu .dropdown {
@@ -92,14 +117,13 @@ export default {
   display: block;
 }
 
-.horizontalMenu .dropdown-content{
-    display: none;
-    position: absolute;
+.horizontalMenu .dropdown-content {
+  display: none;
+  position: absolute;
 }
 
-
-.verticalMenu li{
-    padding: 10px;
+.verticalMenu li {
+  padding: 10px;
 }
 
 .verticalMenu .dropdown {
@@ -111,8 +135,8 @@ export default {
   display: block;
 }
 
-.verticalMenu .dropdown-content{
-    display: none;
-    position: absolute;
+.verticalMenu .dropdown-content {
+  display: none;
+  position: absolute;
 }
 </style>
