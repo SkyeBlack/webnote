@@ -1,11 +1,11 @@
 <template>
   <div id="mymenu">
-    <div class="horizontalMenu" v-show="isHorizontal">
+    <div class="horizontalMenu" v-show="isHorizontal" :class="{'horizontal-scroll':isScroll}">
       <ul>
         <li>Home</li>
         <li class="dropdown">
           Language
-          <ul class="dropdown-content">
+          <ul class="dropdown-content" :class="{'horizontal-scroll':isScroll}">
             <li>中文</li>
             <li>English</li>
           </ul>
@@ -82,7 +82,8 @@ export default {
   name: "mymenu",
   data() {
     return {
-      isHorizontal: true
+      isHorizontal: true,
+      isScroll: false
     };
   },
   mounted() {
@@ -93,6 +94,16 @@ export default {
       })();
     };
     _that.MenuChange();
+
+    window.addEventListener('scroll',function(){
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if(scrollTop > 40){
+        _that.isScroll = true;
+      }
+      else{
+        _that.isScroll = false;
+      }
+    });
   },
   methods: {
     MenuChange: function() {
@@ -116,7 +127,8 @@ ul{
 
 .dropdown-content {
   display: none;
-  position: absolute;  
+  position: absolute;
+  top: 40px;  
 }
 
 .horizontalMenu li {
@@ -133,16 +145,16 @@ ul{
   display: inline-block;
 }
 
-.horizontalMenu .dropdown-content {
-  padding-top: 20px;
-}
-
 .horizontalMenu .dropdown-content li {
   line-height: 38px;
 }
 
 .horizontalMenu .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.horizontal-scroll{
+  background-color: lightslategrey;
 }
 
 .vertical-header {
