@@ -14,14 +14,14 @@
     </div>
     <div class="verticalMenu" v-show="!isHorizontal">
       <div class="vertical-header">
-        <button class="vertical-button">
+        <button class="vertical-button" @click="ShowMenu">
           <img src="../assets/img/menu32x32.png" />
         </button>
       </div>
-      <div>
+      <div class="vertical-menu" :style="{height:verticalMenuHeight}">
         <ul>
-          <li>Home</li>
-          <li class="dropdown">
+          <li class="vertial-menu-item1">Home</li>
+          <li class="vertial-menu-item1 dropdown">
             Language
             <ul class="dropdown-content">
               <li>中文</li>
@@ -83,7 +83,9 @@ export default {
   data() {
     return {
       isHorizontal: true,
-      isScroll: false
+      isScroll: false,
+      showVerticalMenu: false,
+      verticalMenuHeight: 0
     };
   },
   mounted() {
@@ -95,12 +97,14 @@ export default {
     };
     _that.MenuChange();
 
-    window.addEventListener('scroll',function(){
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      if(scrollTop > 40){
+    window.addEventListener("scroll", function() {
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (scrollTop > 40) {
         _that.isScroll = true;
-      }
-      else{
+      } else {
         _that.isScroll = false;
       }
     });
@@ -112,6 +116,15 @@ export default {
       } else {
         this.isHorizontal = false;
       }
+    },
+    ShowMenu: function() {
+      this.showVerticalMenu = !this.showVerticalMenu;
+      let verticalMenuItem1 = document.getElementsByClassName('vertial-menu-item1').length;      
+      if (this.showVerticalMenu) {
+        this.verticalMenuHeight = 38 * verticalMenuItem1 + "px";
+      } else {
+        this.verticalMenuHeight = 0;
+      }
     }
   }
 };
@@ -121,14 +134,15 @@ export default {
   color: #fff;
 }
 
-ul{
+ul {
   padding: 0;
+  margin: 0;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 40px;  
+  top: 40px;
 }
 
 .horizontalMenu li {
@@ -153,7 +167,7 @@ ul{
   display: block;
 }
 
-.horizontal-scroll{
+.horizontal-scroll {
   background-color: lightslategrey;
 }
 
@@ -168,8 +182,14 @@ ul{
   outline: 0;
 }
 
+.vertical-menu{
+ overflow-y: hidden;
+ transition: height 1s;
+}
+
 .verticalMenu li {
-  padding: 10px;
+  height: 38px;
+  line-height: 38px;
   list-style: none;
 }
 
@@ -181,5 +201,4 @@ ul{
 .verticalMenu .dropdown:hover .dropdown-content {
   display: block;
 }
-
 </style>
