@@ -22,8 +22,8 @@
         <ul>
           <li class="vertial-menu-item1">Home</li>
           <li class="vertial-menu-item1 dropdown">
-            Language
-            <ul class="dropdown-content">
+            <a @click="showSubMenu($event)">Language</a>
+            <ul class="dropdown-content" :class="{'sub-menu-open':subOpen}">
               <li>中文</li>
               <li>English</li>
             </ul>
@@ -31,50 +31,6 @@
         </ul>
       </div>
     </div>
-    <!-- <Header id="mainHeader" class="layout-header" :class="{'layout-header-scroll':isScroll}">
-			<img class="layout-logo" src="../assets/img/logo-bhpay-01.png" v-if="isScroll" />
-			<img class="layout-logo" src="../assets/img/logo-bhpay-03.png" v-else />
-			<div>
-				<Menu mode="horizontal" theme="light" active-name="horizontalMenu" accordion @on-select="MenuSelect" class="layout-menu" :class="{'layout-menu-scroll':!isScroll}">
-					<MenuItem class="layout-nav-item" name="home">
-					{{$t('Home')}}
-					</MenuItem>
-					<Submenu class="layout-nav-item" name="language" :class="{'layout-nav-scroll':!isScroll}">
-						<template slot="title">{{$t('HomeMenuLanguage')}}</template>
-						<MenuItem class="layout-nav-item" name="zh-cn">
-						中文
-						</MenuItem>
-						<MenuItem class="layout-nav-item" name="en-us">
-						English
-						</MenuItem>
-					</Submenu>
-				</Menu>
-			</div>
-		</Header>
-		<Header id="mainHeader">
-			<div class="header-vertical">
-				<img class="layout-logo" src="../assets/img/logo-bhpay-01.png" />
-				<Button type="text" v-if="!isHorizontal" @click="ShowMenu">
-					<img src="../assets/img/menu32x32.png" />
-				</Button>
-			</div>
-			<div class="menu-container">
-				<Menu mode="vertical" theme="light" active-name="verticalMenu" accordion @on-select="MenuSelect" @on-open-change="SubmenuOpen" class="menu-control" :style="{height:menuHeight}">
-					<MenuItem class="layout-nav-item" name="home">
-					{{$t('Home')}}
-					</MenuItem>				
-					<Submenu class="layout-nav-item language" name="language">
-						<template slot="title">{{$t('HomeMenuLanguage')}}</template>
-						<MenuItem class="layout-nav-item" name="zh-cn">
-						中文
-						</MenuItem>
-						<MenuItem class="layout-nav-item" name="en-us">
-						English
-						</MenuItem>
-					</Submenu>
-				</Menu>
-			</div>
-    </Header>-->
   </div>
 </template>
 <script>
@@ -85,7 +41,8 @@ export default {
       isHorizontal: true,
       isScroll: false,
       showVerticalMenu: false,
-      verticalMenuHeight: 0
+      verticalMenuHeight: 0,
+      subOpen: false
     };
   },
   mounted() {
@@ -119,11 +76,27 @@ export default {
     },
     ShowMenu: function() {
       this.showVerticalMenu = !this.showVerticalMenu;
-      let verticalMenuItem1 = document.getElementsByClassName('vertial-menu-item1').length;      
+      let verticalMenuItem1 = document.getElementsByClassName(
+        "vertial-menu-item1"
+      ).length;
       if (this.showVerticalMenu) {
         this.verticalMenuHeight = 38 * verticalMenuItem1 + "px";
       } else {
         this.verticalMenuHeight = 0;
+        this.subOpen = false;
+      }
+    },
+    showSubMenu: function(e) {
+      this.subOpen = !this.subOpen;
+      let verticalMenuItem1 = document.getElementsByClassName(
+        "vertial-menu-item1"
+      ).length;
+      let subChildCount = e.target.parentNode.children[1].childNodes.length;
+      if (this.subOpen) {
+        this.verticalMenuHeight =
+          38 * (verticalMenuItem1 + subChildCount) + "px";
+      } else {
+        this.verticalMenuHeight = 38 * verticalMenuItem1 + "px";
       }
     }
   }
@@ -139,7 +112,7 @@ ul {
   margin: 0;
 }
 
-.dropdown-content {
+.horizontalMenu .dropdown-content {
   display: none;
   position: absolute;
   top: 40px;
@@ -182,23 +155,14 @@ ul {
   outline: 0;
 }
 
-.vertical-menu{
- overflow-y: hidden;
- transition: height 1s;
+.vertical-menu {
+  overflow-y: hidden;
+  transition: height 1s;
 }
 
 .verticalMenu li {
   height: 38px;
   line-height: 38px;
   list-style: none;
-}
-
-.verticalMenu .dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.verticalMenu .dropdown:hover .dropdown-content {
-  display: block;
 }
 </style>
