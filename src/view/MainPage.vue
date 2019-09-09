@@ -85,13 +85,13 @@ return{
   color: #fff;    
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 768px) {
   .aside {
     flex: 1 auto;
   }
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: 992px) {
   .content {
     flex: 3 0px;
   }
