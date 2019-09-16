@@ -115,16 +115,29 @@ ul {
 .horizontalMenu .dropdown-content {
   display: none;
   position: absolute;
-  top: 40px;
 }
 
 .horizontalMenu li {
-  display: inline;
-  padding: 10px;
+  display: inline-block;
+  margin: 0 10px;
+  position: relative;
 }
 
-.horizontalMenu li:hover {
-  border-bottom: 2px solid #fff;
+.horizontalMenu li:hover:after {
+  width: 100%;
+}
+
+.horizontalMenu li::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  background: #fff;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
 }
 
 .horizontalMenu .dropdown {
@@ -132,7 +145,7 @@ ul {
   display: inline-block;
 }
 
-.horizontalMenu .dropdown-content li {
+.horizontalMenu li {
   line-height: 38px;
 }
 
