@@ -3,6 +3,14 @@
     <div class="horizontalMenu" v-show="isHorizontal" :class="{'horizontal-scroll':isScroll}">
       <ul>
         <li>Home</li>
+        <li>Footer</li>
+        <li class="dropdown">
+          FAQ
+          <ul class="dropdown-content" :class="{'horizontal-scroll':isScroll}">
+            <li>Question one</li>
+            <li>Question two</li>
+          </ul>
+        </li>
         <li class="dropdown">
           Language
           <ul class="dropdown-content" :class="{'horizontal-scroll':isScroll}">
@@ -115,6 +123,12 @@ ul {
 .horizontalMenu .dropdown-content {
   display: none;
   position: absolute;
+  transform: translateX(-50%);
+  left: 50%;  
+}
+
+.horizontalMenu .dropdown-content li {
+  white-space: nowrap;
 }
 
 .horizontalMenu li {
