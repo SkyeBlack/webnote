@@ -6,14 +6,14 @@
         <li>Footer</li>
         <li class="dropdown">
           FAQ
-          <ul class="dropdown-content" :class="{'horizontal-scroll':isScroll}">
+          <ul class="dropdown-content" :class="{'horizontal-dropdown-scroll':isScroll}">
             <li>Question one</li>
             <li>Question two</li>
           </ul>
         </li>
         <li class="dropdown">
           Language
-          <ul class="dropdown-content" :class="{'horizontal-scroll':isScroll}">
+          <ul class="dropdown-content" :class="{'horizontal-dropdown-scroll':isScroll}">
             <li>中文</li>
             <li>English</li>
           </ul>
@@ -171,6 +171,10 @@ ul {
 
 .horizontal-scroll {
   background-color: lightslategrey;
+}
+
+.horizontal-dropdown-scroll {
+  background-color: #4d565f !important;
 }
 
 .vertical-header {
