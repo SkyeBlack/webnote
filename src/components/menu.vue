@@ -199,7 +199,7 @@ ul {
   list-style: none;
 }
 
-.verticalMenu li ul li{
+.vertical-menu .dropdown-content li{
   margin-left: 20px;
 }
 </style>
