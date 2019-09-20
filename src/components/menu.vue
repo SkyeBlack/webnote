@@ -125,6 +125,8 @@ ul {
   position: absolute;
   transform: translateX(-50%);
   left: 50%;  
+  background-color: #3c3c3c;
+  border-radius: 5px; 
 }
 
 .horizontalMenu .dropdown-content li {
