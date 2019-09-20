@@ -22,16 +22,24 @@
     </div>
     <div class="verticalMenu" v-show="!isHorizontal">
       <div class="vertical-header">
-        <button class="vertical-button" @click="ShowMenu">
+        <button class="vertical-button" @click="showMenu">
           <img src="../assets/img/menu32x32.png" />
         </button>
       </div>
       <div class="vertical-menu" :style="{height:verticalMenuHeight}">
         <ul>
-          <li class="vertial-menu-item1">Home</li>
-          <li class="vertial-menu-item1 dropdown">
+          <li @click="hideSubMenu()">Home</li>
+          <li @click="hideSubMenu()">Footer</li>
+          <li class="vertical-dropdown">
+            <a @click="showSubMenu($event)">FAQ</a>
+            <ul class="vertical-dropdown-content">
+              <li>Question one</li>
+              <li>Question two</li>
+            </ul>
+          </li>
+          <li class="vertical-dropdown">
             <a @click="showSubMenu($event)">Language</a>
-            <ul class="dropdown-content" :class="{'sub-menu-open':subOpen}">
+            <ul class="vertical-dropdown-content">
               <li>中文</li>
               <li>English</li>
             </ul>
@@ -49,18 +57,26 @@ export default {
       isHorizontal: true,
       isScroll: false,
       showVerticalMenu: false,
+      verticalMenuItem1: 0,
       verticalMenuHeight: 0,
-      subOpen: false
+      verticalDrop: ""
     };
   },
   mounted() {
     let _that = this;
+    
+    _that.verticalMenuItem1 = document.getElementsByClassName(
+      "vertical-menu"
+    )[0].children[0].childNodes.length;
+
+    _that.verticalDrop = document.getElementsByClassName("vertical-dropdown");
+
     window.onresize = () => {
       return (() => {
-        _that.MenuChange();
+        _that.menuChange();
       })();
     };
-    _that.MenuChange();
+    _that.menuChange();
 
     window.addEventListener("scroll", function() {
       let scrollTop =
@@ -75,36 +91,49 @@ export default {
     });
   },
   methods: {
-    MenuChange: function() {
+    menuChange: function() {
       if (document.documentElement.clientWidth > 992) {
         this.isHorizontal = true;
       } else {
         this.isHorizontal = false;
       }
+      this.showVerticalMenu = false;
+      this.hideSubMenu();
+      this.verticalMenuHeight = 0;
     },
-    ShowMenu: function() {
+    showMenu: function() {
       this.showVerticalMenu = !this.showVerticalMenu;
-      let verticalMenuItem1 = document.getElementsByClassName(
-        "vertial-menu-item1"
-      ).length;
       if (this.showVerticalMenu) {
-        this.verticalMenuHeight = 38 * verticalMenuItem1 + "px";
+        this.verticalMenuHeight = 38 * this.verticalMenuItem1 + "px";
       } else {
+        this.hideSubMenu();
         this.verticalMenuHeight = 0;
-        this.subOpen = false;
       }
     },
+    hideSubMenu: function() {
+      Array.prototype.forEach.call(this.verticalDrop, function(el) {
+        el.style.height = "38px";
+      });
+      this.verticalMenuHeight = 38 * this.verticalMenuItem1 + "px";
+    },
     showSubMenu: function(e) {
-      this.subOpen = !this.subOpen;
-      let verticalMenuItem1 = document.getElementsByClassName(
-        "vertial-menu-item1"
-      ).length;
-      let subChildCount = e.target.parentNode.children[1].childNodes.length;
-      if (this.subOpen) {
-        this.verticalMenuHeight =
-          38 * (verticalMenuItem1 + subChildCount) + "px";
+      let isHide = false;
+      if (
+        e.target.parentNode.style.height != "" &&
+        e.target.parentNode.style.height != "38px"
+      ) {
+        isHide = true;
+      }
+
+      this.hideSubMenu();
+
+      if (isHide) {
+        this.verticalMenuHeight = 38 * this.verticalMenuItem1 + "px";
       } else {
-        this.verticalMenuHeight = 38 * verticalMenuItem1 + "px";
+        let subChildCount = e.target.parentNode.children[1].childNodes.length;
+        e.target.parentNode.style.height = 38 * (subChildCount + 1) + "px";
+        this.verticalMenuHeight =
+          38 * (this.verticalMenuItem1 + subChildCount) + "px";
       }
     }
   }
@@ -124,9 +153,9 @@ ul {
   display: none;
   position: absolute;
   transform: translateX(-50%);
-  left: 50%;  
+  left: 50%;
   background-color: #3c3c3c;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 .horizontalMenu .dropdown-content li {
@@ -199,7 +228,13 @@ ul {
   list-style: none;
 }
 
-.vertical-menu .dropdown-content li{
+.verticalMenu .vertical-dropdown {
+  overflow-y: hidden;
+  height: 38px;
+  transition: height 1s;
+}
+
+.vertical-menu .vertical-dropdown-content li {
   margin-left: 20px;
 }
 </style>
