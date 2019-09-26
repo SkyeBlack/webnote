@@ -10,6 +10,9 @@
           <dt :class="{'aside-menu-item-active':menuItemActive == 'menu'}">
             <a href="#" @click="menuChange('menu')">menu</a>
           </dt>
+          <dt :class="{'aside-menu-item-active':menuItemActive == 'svg'}">
+            <a href="#" @click="menuChange('svg')">svg</a>
+          </dt>
         </dl>
       </aside>
       <div class="content">
@@ -23,21 +26,25 @@
 <script>
 export default {
   name: "MainPage",
-  data(){
-return{
-    menuItemActive:''
-}
+  data() {
+    return {
+      menuItemActive: ""
+    };
   },
   methods: {
     menuChange: function(val) {
       switch (val) {
         case "animation":
-            this.menuItemActive =  "animation";
+          this.menuItemActive = "animation";
           this.$router.push("/myAnimation");
           break;
         case "menu":
-            this.menuItemActive =  "menu";
+          this.menuItemActive = "menu";
           this.$router.push("/myMenu");
+          break;
+        case "svg":
+          this.menuItemActive = "svg";
+          this.$router.push("/mySvg");
           break;
         default:
           break;
@@ -82,7 +89,7 @@ return{
   height: 60px;
   line-height: 60px;
   background-color: #3c3c3c;
-  color: #fff;    
+  color: #fff;
 }
 
 @media all and (min-width: 768px) {
@@ -106,7 +113,7 @@ return{
   }
 }
 
-dl{
+dl {
   margin: 0;
 }
 

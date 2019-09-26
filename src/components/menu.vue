@@ -23,7 +23,7 @@
     <div class="verticalMenu" v-show="!isHorizontal">
       <div class="vertical-header">
         <button class="vertical-button" @click="showMenu">
-          <img src="../assets/img/menu32x32.png" />
+          <img src="../assets/img/png/menu32x32.png" />
         </button>
       </div>
       <div class="vertical-menu" :style="{height:verticalMenuHeight}">
@@ -64,7 +64,7 @@ export default {
   },
   mounted() {
     let _that = this;
-    
+
     _that.verticalMenuItem1 = document.getElementsByClassName(
       "vertical-menu"
     )[0].children[0].childNodes.length;

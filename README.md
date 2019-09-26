@@ -4,6 +4,9 @@
 ```
 npm install
 npm install vue-router -- save
+npm install svg-sprite-loader --save
+npm install node-sass --save
+npm install sass-loader --save
 ```
 
 ### Compiles and hot-reloads for development

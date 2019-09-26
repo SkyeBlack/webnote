@@ -1,6 +1,6 @@
 <template>
   <div id="myanimation">
-    <img src="../assets/img/computer48x48.png" class="animation-wobble" />
+    <img src="../assets/img/png/computer48x48.png" class="animation-wobble" />
   </div>
 </template>
 
