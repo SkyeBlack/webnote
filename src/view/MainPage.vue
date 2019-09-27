@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     menuChange: function(val) {
+      if(this.menuItemActive == val) return;
       switch (val) {
         case "animation":
           this.menuItemActive = "animation";
