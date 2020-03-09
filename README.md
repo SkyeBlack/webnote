@@ -7,6 +7,7 @@ npm install vue-router -- save
 npm install svg-sprite-loader --save
 npm install node-sass --save
 npm install sass-loader --save
+npm install axios --save
 ```
 
 ### Compiles and hot-reloads for development

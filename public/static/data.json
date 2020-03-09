@@ -1,0 +1,36 @@
+{
+	"Full": {
+		"Name": "chain.acc",
+		"EndingHeight": 2253061,
+		"FileSize": "1.82G",
+		"Download": "https://bhpa.io/bhp-chain-test/chain.acc"
+	},
+	"Increment": [{
+		"Name": "chain.0.acc",
+		"StartingHeight": 0,
+		"EndingHeight": 505000,
+		"FileSize": "381M",
+		"Download": "https://bhpa.io/bhp-chain-test/chain.0.acc"
+	},
+	{
+		"Name": "chain.500000.acc",
+		"StartingHeight": 500000,
+		"EndingHeight": 1005000,
+		"FileSize": "302M",
+		"Download": "https://bhpa.io/bhp-chain-test/chain.500000.acc"
+	},
+	{
+		"Name": "chain.1000000.acc",
+		"StartingHeight": 1000000,
+		"EndingHeight": 1505000,
+		"FileSize": "285M",
+		"Download": "https://bhpa.io/bhp-chain-test/chain.1000000.acc"
+	},
+	{
+		"Name": "chain.1500000.acc",
+		"StartingHeight": 1500000,
+		"EndingHeight": 2005000,
+		"FileSize": "358M",
+		"Download": "https://bhpa.io/bhp-chain-test/chain.1500000.acc"
+	}]
+}

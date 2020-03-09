@@ -13,6 +13,9 @@
           <dt :class="{'aside-menu-item-active':menuItemActive == 'svg'}">
             <a href="#" @click="menuChange('svg')">svg</a>
           </dt>
+          <dt :class="{'aside-menu-item-active':menuItemActive == 'readfile'}">
+            <a href="#" @click="menuChange('readfile')">read file</a>
+          </dt>
         </dl>
       </aside>
       <div class="content">
@@ -33,7 +36,7 @@ export default {
   },
   methods: {
     menuChange: function(val) {
-      if(this.menuItemActive == val) return;
+      if (this.menuItemActive == val) return;
       switch (val) {
         case "animation":
           this.menuItemActive = "animation";
@@ -46,6 +49,10 @@ export default {
         case "svg":
           this.menuItemActive = "svg";
           this.$router.push("/mySvg");
+          break;
+        case "readfile":
+          this.menuItemActive = "readfile";
+          this.$router.push("/myReadFile");
           break;
         default:
           break;
