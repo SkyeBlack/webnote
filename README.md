@@ -8,6 +8,7 @@ npm install svg-sprite-loader --save
 npm install node-sass --save
 npm install sass-loader --save
 npm install axios --save
+npm install markdown-it-vue --save
 ```
 
 ### Compiles and hot-reloads for development

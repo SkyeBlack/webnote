@@ -16,6 +16,9 @@
           <dt :class="{'aside-menu-item-active':menuItemActive == 'readfile'}">
             <a href="#" @click="menuChange('readfile')">read file</a>
           </dt>
+          <dt :class="{'aside-menu-item-active':menuItemActive == 'readMD'}">
+            <a href="#" @click="menuChange('readMD')">read file</a>
+          </dt>
         </dl>
       </aside>
       <div class="content">
@@ -53,6 +56,10 @@ export default {
         case "readfile":
           this.menuItemActive = "readfile";
           this.$router.push("/myReadFile");
+          break;
+        case "readMD":
+          this.menuItemActive = "readMD";
+          this.$router.push("/myReadMD");
           break;
         default:
           break;

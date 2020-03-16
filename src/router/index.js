@@ -5,6 +5,7 @@ import MyAnimation from '@/components/animation'
 import MyMenu from '@/components/menu'
 import MySvg from '@/components/svg'
 import MyReadFile from '@/components/readFile'
+import MyReadMD from '@/components/readMD'
 
 Vue.use(Router)
 
@@ -24,5 +25,8 @@ export default new Router({
 	{
 		path: '/myReadFile',
 		component: MyReadFile
+	}, {
+		path: '/myReadMD',
+		component: MyReadMD
 	}]
 })
