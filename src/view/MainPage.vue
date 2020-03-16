@@ -17,7 +17,7 @@
             <a href="#" @click="menuChange('readfile')">read file</a>
           </dt>
           <dt :class="{'aside-menu-item-active':menuItemActive == 'readMD'}">
-            <a href="#" @click="menuChange('readMD')">read file</a>
+            <a href="#" @click="menuChange('readMD')">read MarkDown</a>
           </dt>
         </dl>
       </aside>
